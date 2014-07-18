@@ -15,5 +15,9 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^', include(router.urls)),
-)
+    url(r'^sit-duration/', 'burncool.views.duration', name='sit-duration'),
+    url(r'^sit-report/', 'burncool.views.report', name='sit-report'),
+
+    url(r'^$', 'rasper.views.api_root',
+        name='api-root'),
+) + router.urls
