@@ -1,1 +1,4 @@
 django>=1.6,<1.7
+djangorestframework
+django-extensions
+ipython
