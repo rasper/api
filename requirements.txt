@@ -2,3 +2,4 @@ django>=1.6,<1.7
 djangorestframework
 django-extensions
 ipython
+django-cors-headers>=0.12,<0.13

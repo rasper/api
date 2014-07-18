@@ -39,11 +39,13 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'django_extensions',
+    'corsheaders',
 
     'burncool',
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,3 +99,6 @@ SHELL_PLUS_POST_IMPORTS = (
     ('pprint','pprint'),
     ('urllib', 'request'),
 )
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
