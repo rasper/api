@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render
 
 from rest_framework import viewsets
@@ -17,8 +17,17 @@ def duration(request):
     time_diff_in_minutes = time_diff.seconds // 60
     return Response(time_diff_in_minutes)
 
+
+
 @api_view(['GET'])
 def report(request):
+
+    events = BurnCool.objects.filter(event='burn')
+
+    hourly = events.aggregate_duration(timedelta(hours=1))
+    daily = events.aggregate_duration(timedelta(days=1))
+    monthly = events.aggregate_duration(timedelta(days=30))
+    annually = events.aggregate_duration(timedelta(days=365))
 
     return Response({
         'hourly': hourly,
