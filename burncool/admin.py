@@ -1,3 +1,4 @@
 from django.contrib import admin
+from burncool.models import BurnCool
 
-# Register your models here.
+admin.site.register(BurnCool)

@@ -14,9 +14,12 @@ class EventViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def duration(request):
     last_event = BurnCool.objects.latest('start_at')
-    time_diff= datetime.now() - last_event.start_at
-    time_diff_in_minutes = time_diff.seconds // 60
-    return Response(time_diff_in_minutes)
+    if last_event.event == 'burn':
+        time_diff = datetime.now() - last_event.start_at
+        duration = time_diff.seconds
+    else:
+        duration = 0
+    return Response(duration)
 
 
 
@@ -36,3 +39,8 @@ def report(request):
         'monthly': monthly,
         'annually': annually,
     })
+
+@api_view(['GET'])
+def sit_activity(request, date):
+    pass
+
