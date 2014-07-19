@@ -45,11 +45,50 @@ def report(request):
     })
 
 @api_view(['GET'])
-def sit_activity(request, date):
+def sit_daily_activity(request):
+    date = request.GET['date']
     cutoff = datetime.strptime(date, '%Y-%m-%d').date()
     burn_cools = BurnCool.objects.filter_by_date(cutoff)
+    duration = 0
+    interval = []
+    for hr in range(0, 24):
+        duration = 0
+        for bc in burn_cools:
+            if bc.end_at.hour == hr:
+                if bc.start_at.hour == hr:
+                    duration += bc.end_at.minute - bc.start_at.minute
+                else:
+                    duration += bc.end_at.minute
+            elif bc.start_at.hour == hr:
+                duration += 60 - bc.start_at.minute
+        else:
+            interval.append(duration)
     return Response(
+        interval
+    )
 
+
+@api_view(['GET'])
+def sit_weekly_activity(request):
+    date = request.GET['date']
+    cutoff = datetime.strptime(date, '%Y-%m-%d').date()
+    burn_cools = BurnCool.objects.filter_by_date(cutoff)
+    duration = 0
+    interval = []
+    for wd in range(0, 7):
+        duration = 0
+        for bc in burn_cools:
+            if bc.end_at.weekday() == wd:
+                if bc.start_at.weekday() == wd:
+                    duration += bc.end_at.minute - bc.start_at.minute
+                else:
+                    duration += bc.end_at.minute
+            elif bc.start_at.weekday() == wd:
+                duration += 60 - bc.start_at.minute
+        else:
+            interval.append(duration)
+    return Response(
+        interval
     )
 
 

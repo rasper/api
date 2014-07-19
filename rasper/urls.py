@@ -18,6 +18,8 @@ urlpatterns = patterns('',
 
     url(r'^sit-duration/', 'burncool.views.duration', name='sit-duration'),
     url(r'^sit-report/', 'burncool.views.report', name='sit-report'),
+    url(r'^sit-daily-activity/', 'burncool.views.sit_daily_activity',
+        name='sit-daily-activity'),
 
     url(r'^$', 'rasper.views.api_root',
         name='api-root'),
