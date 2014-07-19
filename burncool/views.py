@@ -42,5 +42,11 @@ def report(request):
 
 @api_view(['GET'])
 def sit_activity(request, date):
-    pass
+    cutoff = datetime.strptime(date, '%Y-%m-%d').date()
+    burn_cools = BurnCool.objects.filter_by_date(cutoff)
+    return Response(
+
+    )
+
+
 

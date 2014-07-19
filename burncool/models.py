@@ -43,6 +43,11 @@ class BurnCoolQuerySet(models.query.QuerySet):
         return duration
 
 
+    def filter_by_date(self, dt):
+        return self.filter(
+            Q(end_at__year=dt.year, end_at__month=dt.month, end_at__day=dt.day),
+            Q(start_at__year=dt.year, start_at__month=dt.month, start_at__day=dt.day),
+        )
 
 class BurnCoolManager(models.Manager):
     def get_queryset(self):
