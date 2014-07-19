@@ -13,5 +13,7 @@ def api_root(request, format=None):
             format=format),
         'sit-duration': reverse('sit-duration', request=request,
             format=format),
+        'sit-reports': reverse('sit-report', request=request,
+            format=format),
         })
 

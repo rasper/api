@@ -4,18 +4,42 @@ from django.db.models import Q
 from django.db.models.signals import pre_save
 
 class BurnCoolQuerySet(models.query.QuerySet):
-    def aggregate_duration(self, timedelta):
-        start_date = datetime.now() - timedelta
-        qs = self.filter(
-                Q(start_at__gte=start_date)|Q(end_at__isnull=True)
-            ).values('start_at', 'end_at')
+    def aggregate_duration(self, deltas):
+        cutoff = datetime.now() - deltas
         duration = 0
+        qs = self.filter(
+                Q(start_at__gte=cutoff)
+            ).exclude(
+                end_at__isnull=True
+            ).values('start_at', 'end_at')
+
         for event in qs:
-            if not event['end_at']:
-                end_at = datetime.now()
+            duration += (event['end_at'] - event['start_at']).seconds // 60
+
+
+        try:
+            event = self.filter(
+                    Q(start_at__lte=cutoff, end_at__gte=cutoff)
+                ).exclude(
+                    end_at__isnull=True
+                ).values('start_at', 'end_at')[0]
+        except IndexError:
+            pass
+        else:
+            duration += (event['end_at'] - event['start_at']).seconds // 60
+
+        try:
+            event = self.filter(
+                    Q(end_at__isnull=True)
+                ).values('start_at', 'end_at')[0]
+        except IndexError:
+            pass
+        else:
+            x = (datetime.now() - event['start_at']).seconds
+            if x >= deltas.seconds:
+                duration += deltas.seconds // 60
             else:
-                end_at = event['end_at']
-            duration += (end_at - event['start_at']).seconds // 60
+                duration += x // 60
         return duration
 
 
