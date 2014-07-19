@@ -17,12 +17,15 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def duration(request):
-    last_event = BurnCool.objects.latest('start_at')
-    if last_event.event == 'burn':
-        time_diff = datetime.now() - last_event.start_at
-        duration = time_diff.seconds
+    duration = 0
+    try:
+        last_event = BurnCool.objects.latest('start_at')
+    except:
+        pass
     else:
-        duration = 0
+        if last_event.event == 'burn':
+            time_diff = datetime.now() - last_event.start_at
+            duration = time_diff.seconds
     return Response(duration)
 
 
