@@ -15,5 +15,7 @@ def api_root(request, format=None):
             format=format),
         'sit-reports': reverse('sit-report', request=request,
             format=format),
+        'configuration': reverse('configuration-list', request=request,
+            format=format),
         })
 

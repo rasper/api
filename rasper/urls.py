@@ -3,10 +3,11 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-from burncool.views import EventViewSet
+from burncool.views import EventViewSet, ConfigurationViewSet
 
 router = routers.DefaultRouter()
 router.register('event', EventViewSet)
+router.register('configuration', ConfigurationViewSet)
 
 urlpatterns = patterns('',
     # Examples:

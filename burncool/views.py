@@ -6,10 +6,14 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from burncool.models import BurnCool
+from burncool.models import BurnCool, Configuration
 
 class EventViewSet(viewsets.ModelViewSet):
     model = BurnCool
+
+class ConfigurationViewSet(viewsets.ModelViewSet):
+    model = Configuration
+    queryset = Configuration.objects.order_by('-id')[:1]
 
 @api_view(['GET'])
 def duration(request):

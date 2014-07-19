@@ -83,3 +83,8 @@ def end_previous_event(sender, instance, **kwargs):
 
 
 pre_save.connect(end_previous_event, BurnCool)
+
+
+class Configuration(models.Model):
+    cooldown_timeout = models.IntegerField(default=5)
+    burnup_timeout = models.IntegerField(default=5)
