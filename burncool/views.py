@@ -19,8 +19,8 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
 def update_config(request):
     if request.method == 'GET':
         return Response({
-            'burnup_timeout': Configuration.objects.get(key='CBU'),
-            'cooldown_timeout': Configuration.objects.get(key='CCD'),
+            'burnup_timeout': Configuration.objects.get(key='CBU').value,
+            'cooldown_timeout': Configuration.objects.get(key='CCD').value,
         })
     else:
         Configuration.objects.filter(
