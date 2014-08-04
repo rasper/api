@@ -15,6 +15,33 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
     model = Configuration
     queryset = Configuration.objects.order_by('-id')[:1]
 
+@api_view(['POST'])
+def create_event(request):
+    data = request.POST
+    BurnCool.objects.create(event=data['event'])
+
+    config = Configuration.objects.all()
+
+    cbu, created = Configuration.objects.get_or_create(
+            key='CBU', defaults={'value': '20'})
+    ccd, created = Configuration.objects.get_or_create(
+            key='CCD', defaults={'value': '7'})
+    cst, created = Configuration.objects.get_or_create(
+            key='CST', defaults={'value': '150'})
+
+    configuration = [{
+        'command': 'CBU', # Config Burn Up
+        'argument': cbu.value,
+    }, {
+        'command': 'CCD', # Config Cool Down
+        'argument': ccd.value,
+    }, {
+        'command': 'CST', # Sensor Treshold
+        'argument': cst.value,
+    }]
+
+    return Response(configuration)
+
 @api_view(['GET'])
 def duration(request):
     duration = 0

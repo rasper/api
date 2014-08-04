@@ -16,6 +16,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^create-event/', 'burncool.views.create_event', name='create-event'),
     url(r'^sit-duration/', 'burncool.views.duration', name='sit-duration'),
     url(r'^sit-report/', 'burncool.views.report', name='sit-report'),
     url(r'^sit-daily-activity/', 'burncool.views.sit_daily_activity',
