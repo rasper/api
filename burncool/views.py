@@ -15,6 +15,28 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
     model = Configuration
     queryset = Configuration.objects.order_by('-id')[:1]
 
+@api_view(['POST', 'GET'])
+def update_config(request):
+    if request.method == 'GET':
+        return Response({
+            'burnup_timeout': Configuration.objects.get(key='CBU'),
+            'cooldown_timeout': Configuration.objects.get(key='CCD'),
+        })
+    else:
+        Configuration.objects.filter(
+            key='cbu'
+        ).update(
+            value=request.POST['burnup_timeout']
+        )
+
+        Configuration.objects.filter(
+            key='ccd'
+        ).update(
+            value=request.POST['cooldown_timeout']
+        )
+
+        return Response('ok')
+
 @api_view(['POST'])
 def create_event(request):
     data = request.POST
