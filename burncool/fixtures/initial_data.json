@@ -1,0 +1,107 @@
+[
+{
+    "model": "burncool.configuration",
+    "pk": 1,
+    "fields": {
+        "key": "CBU",
+        "value": "20"
+    }
+},
+{
+    "model": "burncool.configuration",
+    "pk": 2,
+    "fields": {
+        "key": "CCD",
+        "value": "7"
+    }
+},
+{
+    "model": "burncool.configuration",
+    "pk": 3,
+    "fields": {
+        "key": "CST",
+        "value": "150"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 1,
+    "fields": {
+        "end_at": "2014-08-04T20:14:47.733",
+        "event": "burn",
+        "start_at": "2014-08-04T20:14:38.793"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 2,
+    "fields": {
+        "end_at": "2014-08-04T20:14:50.979",
+        "event": "cool",
+        "start_at": "2014-08-04T20:14:47.834"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 3,
+    "fields": {
+        "end_at": "2014-08-04T20:15:36.987",
+        "event": "cooled",
+        "start_at": "2014-08-04T20:14:51.071"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 4,
+    "fields": {
+        "end_at": "2014-08-04T20:15:45.451",
+        "event": "burn",
+        "start_at": "2014-08-04T20:15:37.083"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 5,
+    "fields": {
+        "end_at": "2014-08-04T20:15:48.846",
+        "event": "cool",
+        "start_at": "2014-08-04T20:15:45.541"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 6,
+    "fields": {
+        "end_at": "2014-08-04T20:15:57.982",
+        "event": "cooled",
+        "start_at": "2014-08-04T20:15:49.010"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 7,
+    "fields": {
+        "end_at": "2014-08-04T20:16:04.020",
+        "event": "burn",
+        "start_at": "2014-08-04T20:15:58.080"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 8,
+    "fields": {
+        "end_at": "2014-08-04T20:16:06.258",
+        "event": "cool",
+        "start_at": "2014-08-04T20:16:04.128"
+    }
+},
+{
+    "model": "burncool.burncool",
+    "pk": 9,
+    "fields": {
+        "end_at": null,
+        "event": "cooled",
+        "start_at": "2014-08-04T20:16:06.353"
+    }
+}
+]
