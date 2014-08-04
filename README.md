@@ -4,6 +4,7 @@ Rasper API
 # Change Environment
 ```
 workon rasper
+cdproject
 ```
 
 # Setup
