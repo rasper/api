@@ -1,6 +1,11 @@
 Rasper API
 ==========
 
+# Change Environment
+```
+workon rasper
+```
+
 # Setup
 
 ```
