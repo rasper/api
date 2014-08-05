@@ -24,13 +24,13 @@ def update_config(request):
         })
     else:
         Configuration.objects.filter(
-            key='cbu'
+            key='CBU'
         ).update(
             value=request.POST['burnup_timeout']
         )
 
         Configuration.objects.filter(
-            key='ccd'
+            key='CCD'
         ).update(
             value=request.POST['cooldown_timeout']
         )
